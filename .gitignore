@@ -1,0 +1,17 @@
+# 数据容器：作为 GitHub Release 附件分发，不入库
+*.fmcwb
+
+# 解包输出
+data/
+out/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# 系统
+.DS_Store
+Thumbs.db
+desktop.ini
