@@ -107,10 +107,10 @@ def read_dca1000_bin(path: str) -> np.ndarray:
 
 ### A.2 雷达物理推导量速查
 
-- **波长**：$\lambda = c / 77\text{ GHz} \approx \mathbf{3.90\text{ mm}}$
-- **距离分辨率（距离门间隔）**：$\Delta R = (f_s / N) \cdot c / (2 \cdot \text{Slope}) \approx \mathbf{5.58\text{ cm}}$
-- **同 TX 相邻 chirp 间隔**：$T_c = 2 \times (100 + 38)\,\mu\mathrm{s} = \mathbf{276\,\mu\mathrm{s}}$（$\mathrm{PRF} \approx 3.62\,\mathrm{kHz}$）
-- **最大不模糊径向速度**：$v_{\max} \approx \lambda \cdot \text{PRF} / 4 \approx \mathbf{\pm 3.53\text{ m/s}}$（速度分辨率 $\Delta v \approx \mathbf{0.11\text{ m/s}}$）
+- **波长**：λ = c / 77 GHz ≈ **3.90 mm**
+- **距离分辨率（距离门间隔）**：ΔR = (f_s / N) · c / (2 · Slope) ≈ **5.58 cm**
+- **同 TX 相邻 chirp 间隔**：T_c = 2 × (100 + 38) µs = **276 µs**（PRF ≈ 3.62 kHz）
+- **最大不模糊径向速度**：v_max ≈ λ · PRF / 4 ≈ **±3.53 m/s**（速度分辨率 Δv ≈ **0.11 m/s**）
 
 ### A.3 批量解包与 `.fmcwb` 容器说明
 
@@ -126,7 +126,7 @@ def read_dca1000_bin(path: str) -> np.ndarray:
 
 ### A.4 实验踩坑与使用建议
 
-1. **`s2_far`（1 m 远距）**：目标回波按 $1/R^4$ 衰减，距离门外杂波占比很高；做远距分析时建议加**距离门选通**或**背景杂波抑制**，否则角度轨迹容易被杂波拉平。
+1. **`s2_far`（1 m 远距）**：目标回波按 1/R⁴ 衰减，距离门外杂波占比很高；做远距分析时建议加**距离门选通**或**背景杂波抑制**，否则角度轨迹容易被杂波拉平。
 2. **`s4_more_ffbb`（连续采集子集）**：5 分钟内一气呵成采完的 30 个样本，类内一致性极高，**适合当调试代码的干净小验证集，不适合当独立泛化测试集**。
 3. **`s1` 的 `AA`/`CC` 与 `s3` 的 `UU`/`DD`**：画圈与上下挥动的特征与其他类别差异最明显；若做难例分析，建议重点看 `s2_far` 的 `LL`/`RR`。
 4. **自采文件大小自检**：所有正常采集的 `.bin` 均为定长 **16 MiB（16,777,216 字节）**；若你在课上采出来的文件小于该大小，说明未跑满 32 帧，请先检查 mmWave Studio 配置。
